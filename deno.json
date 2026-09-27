@@ -14,6 +14,7 @@
     "lint": "deno lint",
     "fmt": "deno fmt",
     "fmt:check": "deno fmt --check",
+    "release": "deno run --allow-net=git.celikci.me --allow-env=FORGEJO_TOKEN scripts/release.ts",
     "ci": "deno ci && deno task fmt:check && deno task lint && deno task test && deno task check"
   },
   "fmt": {
