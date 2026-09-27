@@ -1,0 +1,63 @@
+{
+  "name": "Motif",
+  "description": "Personal theme system by Ege Çelikçi. Single source of truth for the palette and semantics shared by the website, Forgejo and Navidrome.",
+  "version": 1,
+  "semantics": {
+    "bg": "page background",
+    "surface": "raised surfaces: cards, menus, popovers",
+    "text": "primary body text",
+    "textMuted": "secondary text, placeholders, timestamps",
+    "border": "dividers and input borders",
+    "primary": "brand accent: links, primary buttons, focus",
+    "primaryOffset": "primary hover/pressed",
+    "secondary": "supporting accent"
+  },
+  "light": {
+    "bg": "#fef6e4",
+    "surface": "#f3e1d8",
+    "text": "#172c66",
+    "textMuted": "#5b6a9a",
+    "border": "#f3d2c1",
+    "primary": "#a60c49",
+    "primaryOffset": "#8a0a3d",
+    "secondary": "#2d6a7a"
+  },
+  "dark": {
+    "bg": "#3a2a55",
+    "surface": "#4a3a6a",
+    "text": "#e8e2f3",
+    "textMuted": "#d0c8e8",
+    "textDim": "#b8afdc",
+    "border": "#52427a",
+    "primary": "#ff8e8c",
+    "primaryOffset": "#ef5a58",
+    "secondary": "#abd1c6"
+  },
+  "accessibility": {
+    "standard": "WCAG 2.2 AA",
+    "normalText": 4.5,
+    "largeTextAndUI": 3.0,
+    "rule": "Every text/background pair a target ships must meet normalText; UI borders and non-text indicators must meet largeTextAndUI.",
+    "knownIssue": "The website's textMuted (#5b6a9a light) is only 4.17:1 on surface. Targets must darken muted text rather than copy the raw value; see forgejo/motif-*.css."
+  },
+  "targets": {
+    "website": {
+      "status": "live",
+      "location": "ege.celikci.me/src/assets/styles/utils/_variables.scss",
+      "mechanism": "SCSS custom properties; light in :root, dark in @mixin dark-palette",
+      "note": "Currently the de-facto origin of this palette. Not yet consuming this repo."
+    },
+    "forgejo": {
+      "status": "live",
+      "location": "forgejo/",
+      "mechanism": "CSS override fragments appended to stock Forgejo themes at build time",
+      "note": "Installed by services/forgejo in the nixos config."
+    },
+    "navidrome": {
+      "status": "draft",
+      "location": "navidrome/",
+      "mechanism": "MUI theme object compiled into the UI bundle (requires patching the Navidrome build)",
+      "note": "Navidrome cannot load external theme files."
+    }
+  }
+}

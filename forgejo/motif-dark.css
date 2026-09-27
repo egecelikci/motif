@@ -1,0 +1,58 @@
+:root{
+--color-secondary:#52427a;
+/* Muted text + placeholders: WCAG 2.2 SC 1.4.3 (AA). --color-placeholder-text
+   follows --color-text-light-3, whose stock value was only 4.42:1 on
+   --color-input-background (steel-650, #5d4f75). Verified >= 4.75:1 there.
+   Re-check with themes/check-contrast.py. */
+--color-text-light:#ded7ea;
+--color-text-light-1:#dcd5e8;
+--color-text-light-2:#d7d0e3;
+--color-text-light-3:#d3cce0;
+--color-input-border:#52427a;
+--color-input-border-hover:#6b5794;
+--color-timeline:#52427a;
+--color-selection-bg:#ff8e8c;
+--color-selection-fg:#3a2a55;
+--steel-900:color-mix(in srgb,#3a2a55,black 30%);
+--steel-850:color-mix(in srgb,#3a2a55,black 15%);
+--steel-800:#3a2a55;
+--steel-750:color-mix(in srgb,#3a2a55,#e8e2f3 8%);
+--steel-700:color-mix(in srgb,#3a2a55,#e8e2f3 14%);
+--steel-650:color-mix(in srgb,#3a2a55,#e8e2f3 20%);
+--steel-600:color-mix(in srgb,#3a2a55,#e8e2f3 27%);
+--steel-550:color-mix(in srgb,#3a2a55,#e8e2f3 35%);
+--steel-500:color-mix(in srgb,#3a2a55,#e8e2f3 43%);
+--steel-450:color-mix(in srgb,#3a2a55,#e8e2f3 50%);
+--steel-400:color-mix(in srgb,#3a2a55,#e8e2f3 57%);
+--steel-350:color-mix(in srgb,#3a2a55,#e8e2f3 64%);
+--steel-300:color-mix(in srgb,#3a2a55,#e8e2f3 71%);
+--steel-250:color-mix(in srgb,#3a2a55,#e8e2f3 78%);
+--steel-200:color-mix(in srgb,#3a2a55,#e8e2f3 84%);
+--steel-150:color-mix(in srgb,#3a2a55,#e8e2f3 90%);
+--steel-100:color-mix(in srgb,#3a2a55,#e8e2f3 96%);
+--color-primary:#ff8e8c;
+--color-primary-contrast:#000000;
+--color-primary-dark-1:color-mix(in srgb,#ff8e8c,white 15%);
+--color-primary-dark-2:color-mix(in srgb,#ff8e8c,white 15%);
+--color-primary-dark-3:color-mix(in srgb,#ff8e8c,white 30%);
+--color-primary-dark-4:color-mix(in srgb,#ff8e8c,white 30%);
+--color-primary-dark-5:color-mix(in srgb,#ff8e8c,white 45%);
+--color-primary-dark-6:color-mix(in srgb,#ff8e8c,white 45%);
+--color-primary-dark-7:color-mix(in srgb,#ff8e8c,white 58%);
+--color-primary-light-1:color-mix(in srgb,#ff8e8c,black 12%);
+--color-primary-light-2:color-mix(in srgb,#ff8e8c,black 25%);
+--color-primary-light-3:color-mix(in srgb,#ff8e8c,black 38%);
+--color-primary-light-4:color-mix(in srgb,#ff8e8c,black 48%);
+--color-primary-light-5:color-mix(in srgb,#ff8e8c,black 48%);
+--color-primary-light-6:color-mix(in srgb,#ff8e8c,black 58%);
+--color-primary-light-7:color-mix(in srgb,#ff8e8c,black 58%);
+--color-primary-alpha-10:color-mix(in srgb,#ff8e8c 10%,transparent);
+--color-primary-alpha-20:color-mix(in srgb,#ff8e8c 20%,transparent);
+--color-primary-alpha-30:color-mix(in srgb,#ff8e8c 30%,transparent);
+--color-primary-alpha-40:color-mix(in srgb,#ff8e8c 40%,transparent);
+--color-primary-alpha-50:color-mix(in srgb,#ff8e8c 50%,transparent);
+--color-primary-alpha-60:color-mix(in srgb,#ff8e8c 60%,transparent);
+--color-primary-alpha-70:color-mix(in srgb,#ff8e8c 70%,transparent);
+--color-primary-alpha-80:color-mix(in srgb,#ff8e8c 80%,transparent);
+--color-primary-alpha-90:color-mix(in srgb,#ff8e8c 90%,transparent);
+}
