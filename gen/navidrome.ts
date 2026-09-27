@@ -30,6 +30,11 @@ export function renderNavidrome(palette: Palette): string {
     `    text: { primary: "${light.text}", secondary: "${lightMuted}" },`,
     '    type: "light",',
     "  },",
+    "  overrides: {",
+    // Navidrome's login link falls back to MUI's default indigo when a theme
+    // does not override it; point it at the palette instead.
+    `    NDLogin: { systemNameLink: { color: "${light.primary}" } },`,
+    "  },",
     '  player: { theme: "light" },',
     "};",
     "",
@@ -41,6 +46,9 @@ export function renderNavidrome(palette: Palette): string {
     `    background: { default: "${dark.bg}", paper: "${dark.surface}" },`,
     `    text: { primary: "${dark.text}", secondary: "${darkMuted}" },`,
     '    type: "dark",',
+    "  },",
+    "  overrides: {",
+    `    NDLogin: { systemNameLink: { color: "${dark.primary}" } },`,
     "  },",
     '  player: { theme: "dark" },',
     "};",

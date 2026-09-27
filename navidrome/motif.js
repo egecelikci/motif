@@ -10,6 +10,9 @@ export const MotifLight = {
     text: { primary: "#172c66", secondary: "#43507d" },
     type: "light",
   },
+  overrides: {
+    NDLogin: { systemNameLink: { color: "#a60c49" } },
+  },
   player: { theme: "light" },
 };
 
@@ -21,6 +24,9 @@ export const MotifDark = {
     background: { default: "#3a2a55", paper: "#4a3a6a" },
     text: { primary: "#e8e2f3", secondary: "#d7d0e3" },
     type: "dark",
+  },
+  overrides: {
+    NDLogin: { systemNameLink: { color: "#ff8e8c" } },
   },
   player: { theme: "dark" },
 };
