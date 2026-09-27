@@ -1,13 +1,14 @@
 {
   "name": "Motif",
   "description": "Personal theme system by Ege Çelikçi. Single source of truth for the palette and semantics shared by the website, Forgejo and Navidrome.",
-  "version": 1,
+  "version": 2,
   "semantics": {
     "bg": "page background",
     "surface": "raised surfaces: cards, menus, popovers",
     "text": "primary body text",
-    "textMuted": "secondary text, placeholders, timestamps",
+    "textMuted": "secondary text, placeholders, timestamps (raw value; targets must use the derived, AA-safe ramp)",
     "border": "dividers and input borders",
+    "borderHover": "input border on hover/focus",
     "primary": "brand accent: links, primary buttons, focus",
     "primaryOffset": "primary hover/pressed",
     "secondary": "supporting accent"
@@ -18,6 +19,7 @@
     "text": "#172c66",
     "textMuted": "#5b6a9a",
     "border": "#f3d2c1",
+    "borderHover": "#e3b79d",
     "primary": "#a60c49",
     "primaryOffset": "#8a0a3d",
     "secondary": "#2d6a7a"
@@ -29,6 +31,7 @@
     "textMuted": "#d0c8e8",
     "textDim": "#b8afdc",
     "border": "#52427a",
+    "borderHover": "#6b5794",
     "primary": "#ff8e8c",
     "primaryOffset": "#ef5a58",
     "secondary": "#abd1c6"
@@ -38,7 +41,7 @@
     "normalText": 4.5,
     "largeTextAndUI": 3.0,
     "rule": "Every text/background pair a target ships must meet normalText; UI borders and non-text indicators must meet largeTextAndUI.",
-    "knownIssue": "The website's textMuted (#5b6a9a light) is only 4.17:1 on surface. Targets must darken muted text rather than copy the raw value; see forgejo/motif-*.css."
+    "knownIssue": "The raw textMuted (#5b6a9a light) is only 4.17:1 on surface. Targets derive a darkened ramp instead; enforcement lives in gen/derive.ts."
   },
   "targets": {
     "website": {
@@ -50,12 +53,13 @@
     "forgejo": {
       "status": "live",
       "location": "forgejo/",
-      "mechanism": "CSS override fragments appended to stock Forgejo themes at build time",
-      "note": "Installed by services/forgejo in the nixos config."
+      "generatedBy": "gen/forgejo.ts",
+      "mechanism": "CSS override fragments appended to stock Forgejo themes at build time"
     },
     "navidrome": {
-      "status": "draft",
-      "location": "navidrome/",
+      "status": "live",
+      "location": "navidrome/motif.js",
+      "generatedBy": "gen/navidrome.ts",
       "mechanism": "MUI theme object compiled into the UI bundle (requires patching the Navidrome build)",
       "note": "Navidrome cannot load external theme files."
     }
