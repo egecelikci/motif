@@ -23,7 +23,7 @@
     "indentWidth": 2,
     "semiColons": true,
     "singleQuote": false,
-    "proseWrap": "always"
+    "proseWrap": "preserve"
   },
   "test": {
     "include": [
