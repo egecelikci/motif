@@ -44,12 +44,6 @@ export interface PaletteMode {
   readonly primaryOffset: string;
   /** Supporting accent: secondary buttons and highlights that must not compete with {@link primary}. */
   readonly secondary: string;
-  /**
-   * Third text emphasis level, dimmer than {@link textMuted} — used for timestamps, disabled labels, and other intentionally de-emphasised text.
-   *
-   * Only the dark scheme defines it today, so this is a **required key whose value may be `undefined`** rather than an optional key. That spelling is forced by `exactOptionalPropertyTypes` in `deno.json`: `textDim?: string` means "the key may be absent", while `textDim: string | undefined` means "the key is always present and may hold `undefined`". {@link parseMode} always assigns the key, so only the latter type-checks. Targets must branch on `undefined` instead of assuming the token exists.
-   */
-  readonly textDim: string | undefined;
 }
 
 /**
@@ -94,7 +88,7 @@ export function parsePalette(json: string): Palette {
 /**
  * Validates one scheme and drops everything the code does not consume.
  *
- * Every key except {@link PaletteMode.textDim} is required. Errors name the full spec path (`palette.light.primary`) so a failure points straight at the typo.
+ * Every key is required. Errors name the full spec path (`palette.light.primary`) so a failure points straight at the typo.
  */
 function parseMode(value: unknown, scheme: Scheme): PaletteMode {
   if (!isRecord(value)) throw new Error(`palette.${scheme} must be an object`);
@@ -108,21 +102,7 @@ function parseMode(value: unknown, scheme: Scheme): PaletteMode {
     primary: hex(value, scheme, "primary"),
     primaryOffset: hex(value, scheme, "primaryOffset"),
     secondary: hex(value, scheme, "secondary"),
-    textDim: optionalHex(value, scheme, "textDim"),
   };
-}
-
-/**
- * Like {@link hex}, but tolerates an absent key.
- *
- * Used for tokens a scheme is allowed to omit. Returns `undefined` for a missing key but still rejects a present-but-malformed value, so "omitted" and "wrong" stay distinguishable.
- */
-function optionalHex(
-  source: Record<string, unknown>,
-  scheme: Scheme,
-  key: string,
-): string | undefined {
-  return source[key] === undefined ? undefined : hex(source, scheme, key);
 }
 
 /**

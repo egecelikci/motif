@@ -11,12 +11,8 @@
 import { LINE_BANNER } from "./banner.ts";
 import type { Palette, PaletteMode, Scheme } from "./palette.ts";
 
-/**
- * The subset of {@link PaletteMode} the website maps to a custom property.
- *
- * `textDim` is excluded because the website computes its own dim color with `color-mix()` in the light scheme, and only the dark scheme defines the token. Handling it in the table would mean an entry that is sometimes absent.
- */
-type MappedToken = Exclude<keyof PaletteMode, "textDim">;
+/** The subset of {@link PaletteMode} the website maps to a custom property. */
+type MappedToken = keyof PaletteMode;
 
 /**
  * Palette token → the custom property the website consumes.
@@ -38,16 +34,10 @@ const TOKENS = [
  * Custom property declarations for one scheme, unindented.
  *
  * Values are copied verbatim from the spec. The website has no contrast check of its own, so it relies on {@link PaletteMode.textMuted} having been validated by `gen/derive.ts` before it arrives.
- *
- * `textDim` is appended only for a scheme that defines it, keeping the light mixin free of a token the website obtains elsewhere.
  */
 function declarations(scheme: Scheme, palette: Palette): string[] {
   const mode = palette[scheme];
-  const lines = TOKENS.map(([token, property]) => `${property}: ${mode[token]};`);
-  if (scheme === "dark" && mode.textDim !== undefined) {
-    lines.push(`--color-text-dim: ${mode.textDim};`);
-  }
-  return lines;
+  return TOKENS.map(([token, property]) => `${property}: ${mode[token]};`);
 }
 
 /**

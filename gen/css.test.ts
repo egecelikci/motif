@@ -49,25 +49,15 @@ Deno.test("website textMuted comes straight from the spec", () => {
 });
 
 /**
- * Independent a11y check against the surfaces the *website* uses, which are lighter than the Forgejo surfaces `derive.ts` checks. If `derive.ts` is ever relaxed to only the site's surfaces, or a lighter one is added, this fails. `textDim` is included because the site ships it as real text.
+ * Independent a11y check against the surfaces the *website* uses, which are lighter than the Forgejo surfaces `derive.ts` checks. If `derive.ts` is ever relaxed to only the site's surfaces, or a lighter one is added, this fails.
  */
 Deno.test("website text colors clear WCAG 2.2 AA on their surfaces", () => {
   for (const scheme of ["light", "dark"] as const) {
-    const colors = [palette[scheme].textMuted];
-    if (scheme === "dark" && palette.dark.textDim !== undefined) colors.push(palette.dark.textDim);
-    for (const color of colors) {
+    for (const color of [palette[scheme].textMuted]) {
       for (const background of [palette[scheme].bg, palette[scheme].surface]) {
         const ratio = contrastRatio(color, background);
         assert(ratio >= 4.5, `${scheme} ${color} on ${background} is ${ratio.toFixed(2)}:1`);
       }
     }
   }
-});
-
-/** `textDim` is dark-only; emitting it for light too would override the site's own derived dim color with a value it never chose. */
-Deno.test("website dark scheme carries the optional textDim token", () => {
-  const scss = renderWebsite(palette);
-  assertEquals(palette.light.textDim, undefined);
-  assertStringIncludes(scss, `--color-text-dim: ${palette.dark.textDim};`);
-  assertEquals(scss.match(/--color-text-dim:/g)?.length, 1);
 });
