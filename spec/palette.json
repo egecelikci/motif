@@ -41,30 +41,5 @@
     "normalText": 4.5,
     "largeTextAndUI": 3.0,
     "rule": "Every text/background pair a target ships must meet normalText; UI borders and non-text indicators must meet largeTextAndUI."
-  },
-  "targets": {
-    "website": {
-      "status": "live",
-      "artifact": "website/_motif.scss",
-      "generatedBy": "gen/css.ts",
-      "location": "https://git.celikci.me/egecelikci/ege.celikci.me/src/branch/main/src/assets/styles/utils/_variables.scss",
-      "servedAt": "https://ege.celikci.me/assets/styles/site.css",
-      "mechanism": "SCSS mixins (@include motif.light / motif.dark) mapped to the site's --color-* custom properties; the partial is fetched as a Lume remote file pinned to a commit on git.celikci.me",
-      "note": "Consumes this repo; no longer the origin of the palette."
-    },
-    "forgejo": {
-      "status": "live",
-      "artifact": "forgejo/",
-      "generatedBy": "gen/forgejo.ts",
-      "mechanism": "CSS override fragments for :root, appended to Forgejo's stock theme at build time; only the variables Motif changes are named, so everything else keeps tracking Forgejo upstream",
-      "note": "Two fragments, one per scheme; Forgejo picks one by which file is applied, not by a selector inside it. The ANSI and named-color variables (--color-ansi-*, --color-blue, ...) are deliberately inherited, not overridden. Consumer side not recorded here yet."
-    },
-    "navidrome": {
-      "status": "live",
-      "artifact": "navidrome/motif.js",
-      "generatedBy": "gen/navidrome.ts",
-      "mechanism": "MUI theme objects (MotifLight / MotifDark) replacing ui/src/themes/light.js and dark.js at build time; useCurrentTheme hands those two modules to the UI's Auto setting, so both schemes must be provided",
-      "note": "Navidrome cannot load external theme files, so the build has to be patched. palette.type is required because useCurrentTheme reads it for the body background. Consumer side not recorded here yet."
-    }
   }
 }
